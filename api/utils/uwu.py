@@ -76,28 +76,29 @@ def _replace_many(
     return regex.sub(_repl, sentence)
 
 
-def stutter(s, rate=0.5):
+def stutter(text: str, rate: float = 0.5):
     """Adds repetition separated by dashes at the start of each word in a string."""
 
-    def _stutter(w):
+    def stutter_word(word: str):
+        """Gives stutter to a single word."""
         while random.random() < rate:
-            w = w[0] + '-' + w
-        return w
-    return ' '.join(map(_stutter, s.split(' ')))
+            word = word[0] + '-' + word
+
+        return word
+
+    return ' '.join(map(stutter_word, text.split(' ')))
 
 
 def to_uwu(text: str) -> str:
     """
-            Converts a given `text` into it's uwu equivalent.
-            This is shamelessly stolen from Python Discord's seasonalbot.
-            https://github.com/python-discord/seasonalbot/blob/master/bot/exts/evergreen/fun.py
-            """
+    Converts a given `text` into it's uwu equivalent.
+
+    This is shamelessly stolen from Python Discord's Sir-Lancebot repository.
+
+    Source: https://github.com/python-discord/seasonalbot/blob/master/bot/exts/evergreen/fun.py
+    """
     conversion_func = functools.partial(
         _replace_many, replacements=UWU_WORDS, ignore_case=True, match_case=True
     )
-    converted_text = conversion_func(text)
 
-    # Don't put >>> if only embed present
-    if converted_text:
-        converted_text = f"{converted_text.lstrip('> ')}"
-    return converted_text
+    return conversion_func(text)
