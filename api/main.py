@@ -16,6 +16,11 @@ async def translate_to_uwu(string: str) -> dict:
 
 
 @app.get("/stutter/{string}")
+async def translate_to_uwu(string: str) -> dict:
+    """Makes a string stutter."""
+    return {"message": stutter(string)}
+
+
 @app.get("/uwu-stutter/{string}")
 async def translate_to_uwu(string: str) -> dict:
     """Adds uwu *with* a stutter."""
