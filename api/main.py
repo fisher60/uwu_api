@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .utils import uwu
+from api.utils.uwu import to_uwu, stutter
 
 app = FastAPI()
 
@@ -11,4 +11,4 @@ async def root():
 
 @app.get("/uwu/{string}")
 async def translate_to_uwu(string: str) -> dict:
-    return {"message": uwu.to_uwu(string)}
+    return {"message": stutter(to_uwu(string))}
