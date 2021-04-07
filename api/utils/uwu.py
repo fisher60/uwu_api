@@ -1,4 +1,5 @@
 import functools
+import random
 import re
 import string
 
@@ -73,6 +74,16 @@ def _replace_many(
             return replacement.lower()
 
     return regex.sub(_repl, sentence)
+
+
+def stutter(s, rate=0.5):
+    """Adds repetition separated by dashes at the start of each word in a string."""
+
+    def _stutter(w):
+        while random.random() < rate:
+            w = w[0] + '-' + w
+        return w
+    return ' '.join(map(_stutter, s.split(' ')))
 
 
 def to_uwu(text: str) -> str:
