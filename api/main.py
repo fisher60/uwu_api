@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from api.utils.uwu import to_uwu, stutter
 
-app = FastAPI()
+app = FastAPI(
+    title="UwU",
+    description="( ᴜ ω ᴜ )",
+)
 
 
 @app.get("/")
