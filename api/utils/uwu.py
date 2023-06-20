@@ -86,7 +86,7 @@ def stutter(text: str, rate: float = 0.5):
 
         return word
 
-    return ' '.join(map(stutter_word, text.split(' ')))
+    return ' '.join(map(stutter_word, text.split()))
 
 
 def to_uwu(text: str) -> str:
